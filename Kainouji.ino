@@ -63,10 +63,10 @@ void setup()
   Serial.print("Connecting to");
   Serial.print(ssid);
   WiFi.begin(ssid, password);
+  int i = 0;
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    int i = 0;
     Serial.print(".");
     //通信状況が悪い時リスタート
     if (++i > 30) {
