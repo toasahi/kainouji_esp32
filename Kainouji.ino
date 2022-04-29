@@ -60,23 +60,7 @@ void setup()
   bme280spi.ESP32_BME280_SPI_Init(t_sb, filter, osrs_t, osrs_p, osrs_h, Mode);
 
   //WiFi接続
-  Serial.print("Connecting to");
-  Serial.print(ssid);
-  WiFi.begin(ssid, password);
-  int i = 0;
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-    //通信状況が悪い時リスタート
-    if (++i > 30) {
-      Serial.print("リスタート");
-      esp_deep_sleep_enable_timer_wakeup(1 * 1000 * 1000);
-      esp_deep_sleep_start();
-    }
-  }
-
-  Serial.println("Connected");
+  Wifi_Set(ssid,password);
   //SSH証明書の設定
   client.setCACert(root_ca);
   //日本時間の設定
